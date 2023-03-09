@@ -49,10 +49,20 @@ def validate_data(values):
                 f"Exactly 6 values required, you provided {len(values)}"
             )
     except ValueError as e:
-            print(f"Invalid data: {e}, please try again. \n")
+            print( f"Invalid data: {e}, please try again. \n" )
             return False
 
     return True
 
 
+def update_sales_worksheet(data):
+    """
+    update sales worksheet, add new row with the list data provided
+    """
+    sales_worksheet = SHEET.worksheet("sales")
+    sales_worksheet.append_row(data)
+    print("Sales worksheep updated successfully. \n")
+
 data = get_sales_data()
+sales_data = [int(num) for num in data]
+update_sales_worksheet(sales_data)
